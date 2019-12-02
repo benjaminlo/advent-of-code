@@ -13,7 +13,8 @@ public class Day2 {
     public static void main(String[] args) {
         List<Integer> input = new ArrayList<>();
         try {
-            String inputString = new String(Files.readAllBytes(Paths.get("day-2/input.txt"))).replaceAll("\\s+", "");
+            String inputString = new String(Files.readAllBytes(Paths.get("2019/day-2/input.txt"))).replaceAll("\\s+",
+                    "");
             input = Stream.of(inputString.split(",")).mapToInt(Integer::parseInt).boxed().collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();

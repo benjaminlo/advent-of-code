@@ -12,7 +12,7 @@ public class Day1 {
     public static void main(String[] args) {
         List<Integer> input = new ArrayList<>();
         try {
-            input = Files.lines(Paths.get("day-1/input.txt")).mapToInt(line -> Integer.parseInt(line)).boxed()
+            input = Files.lines(Paths.get("2019/day-1/input.txt")).mapToInt(line -> Integer.parseInt(line)).boxed()
                     .collect(Collectors.toList());
         } catch (IOException e) {
             e.printStackTrace();
