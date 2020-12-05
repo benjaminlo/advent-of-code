@@ -1,21 +1,20 @@
 const fs = require("fs");
-const { get } = require("http");
 
 const input = fs
   .readFileSync("2020/day-02/input.txt", "utf8")
   .trim()
   .split("\n");
 
-function getNumValidPasswords(input) {
+const getNumValidPasswords = (input) => {
   let numValidPasswords = 0;
   input.forEach((line) => {
     if (isPasswordValid(line)) numValidPasswords++;
   });
 
   return numValidPasswords;
-}
+};
 
-function isPasswordValid(line) {
+const isPasswordValid = (line) => {
   const splitOnSpaces = line.split(" ");
   const splitOnHyphen = splitOnSpaces[0].split("-");
   const low = parseInt(splitOnHyphen[0]);
@@ -33,18 +32,18 @@ function isPasswordValid(line) {
     if (password.length === 0) return true;
   }
   return password.indexOf(char) === -1;
-}
+};
 
-function getNumValidPasswords2(input) {
+const getNumValidPasswords2 = (input) => {
   let numValidPasswords = 0;
   input.forEach((line) => {
     if (isPasswordValid2(line)) numValidPasswords++;
   });
 
   return numValidPasswords;
-}
+};
 
-function isPasswordValid2(line) {
+const isPasswordValid2 = (line) => {
   const splitOnSpaces = line.split(" ");
   const splitOnHyphen = splitOnSpaces[0].split("-");
   const low = parseInt(splitOnHyphen[0]);
@@ -56,7 +55,7 @@ function isPasswordValid2(line) {
   const isHighMatch = password.charAt(high - 1) === char;
 
   return isLowMatch ? !isHighMatch : isHighMatch;
-}
+};
 
 console.log(getNumValidPasswords(input));
 console.log(getNumValidPasswords2(input));

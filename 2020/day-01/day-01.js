@@ -5,7 +5,7 @@ const input = fs
   .trim()
   .split("\n");
 
-function multiplyTwoEntriesThatSumTo2020(input) {
+const multiplyTwoEntriesThatSumTo2020 = (input) => {
   let set = new Set();
   let entries = input.map((str) => parseInt(str));
 
@@ -14,9 +14,9 @@ function multiplyTwoEntriesThatSumTo2020(input) {
     if (set.has(target)) return entries[i] * target;
     set.add(entries[i]);
   }
-}
+};
 
-function multiplyThreeEntriesThatSumTo2020(input) {
+const multiplyThreeEntriesThatSumTo2020 = (input) => {
   let set = new Set();
   let entries = input.map((str) => parseInt(str));
 
@@ -28,7 +28,7 @@ function multiplyThreeEntriesThatSumTo2020(input) {
     }
     set.add(entries[i]);
   }
-}
+};
 
 console.log(multiplyTwoEntriesThatSumTo2020(input));
 console.log(multiplyThreeEntriesThatSumTo2020(input));
