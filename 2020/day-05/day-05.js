@@ -6,21 +6,16 @@ const input = fs
   .split("\n");
 
 const getHighestSeatId = (input) => {
-  return getSeatIds(input).reduce(
-    (max, curr) => Math.max(max, curr),
-    Number.MIN_VALUE
-  );
+  const seatIds = input.map((boardingPass) => getSeatId(boardingPass));
+
+  return seatIds.reduce((max, curr) => Math.max(max, curr), Number.MIN_VALUE);
 };
 
-const getSeatIds = (input) => {
-  let seatIds = [];
-  input.forEach((boardingPass) => {
-    const row = binarySearch(boardingPass.slice(0, 7), 127, "F");
-    const column = binarySearch(boardingPass.slice(7), 8, "L");
-    seatIds.push(row * 8 + column);
-  });
+const getSeatId = (boardingPass) => {
+  const row = binarySearch(boardingPass.slice(0, 7), 127, "F");
+  const column = binarySearch(boardingPass.slice(7), 8, "L");
 
-  return seatIds;
+  return row * 8 + column;
 };
 
 const binarySearch = (sequence, max, lowDir) => {
@@ -34,4 +29,22 @@ const binarySearch = (sequence, max, lowDir) => {
   return min;
 };
 
+const getMySeatId = (input) => {
+  let seats = [...Array(127)].map((x) => Array(8).fill(0));
+  input.forEach((boardingPass) => {
+    const row = binarySearch(boardingPass.slice(0, 7), 127, "F");
+    const column = binarySearch(boardingPass.slice(7), 8, "L");
+    seats[row][column] = 1;
+  });
+
+  for (let i = 0; i < seats.length; i++) {
+    if (!(seats[i][0] === 0 && seats[i][1] === 0)) {
+      for (let j = 0; j < seats[0].length; j++) {
+        if (seats[i][j] === 0) return i * 8 + j;
+      }
+    }
+  }
+};
+
 console.log(getHighestSeatId(input));
+console.log(getMySeatId(input));
