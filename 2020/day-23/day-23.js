@@ -40,4 +40,24 @@ const getNewCupArrangement = (cups, currCupIndex) => {
   return [cups, currCupIndex];
 };
 
+const getProductOfCupLabels = (input, numMoves) => {
+  let cups = [...input[0]]
+    .map((cup) => parseInt(cup))
+    .concat(
+      Array(1000000 - 10)
+        .fill()
+        .map((_, idx) => 10 + idx)
+    );
+  let currCupIndex = 0;
+  for (let i = 0; i < numMoves; i++) {
+    [cups, currCupIndex] = getNewCupArrangement(cups, currCupIndex);
+  }
+  const oneIndex = cups.indexOf(1);
+  const labelOne = (oneIndex + 1) % cups.length;
+  const labelTwo = (oneIndex + 2) % cups.length;
+
+  return labelOne * labelTwo;
+};
+
 console.log(getCupLabels(input, 100));
+console.log(getProductOfCupLabels(input, 10000000));
