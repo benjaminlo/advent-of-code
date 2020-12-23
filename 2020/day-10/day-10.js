@@ -22,4 +22,15 @@ const getProductOfOneAndThreeJoltDifferences = (input) => {
   return numOneJoltDifferences * numThreeJoltDifferences;
 };
 
+const getNumDistinctAdapterArrangements = (input) => {
+  const adapters = input.map((line) => parseInt(line)).sort((a, b) => b - a);
+  let numDistinctAdapterArrangements = 0;
+  console.log(adapters);
+
+  return numDistinctAdapterArrangements;
+};
+
+const getNumDistinctAdapterArrangementsHelper = (adapters) => {};
+
 console.log(getProductOfOneAndThreeJoltDifferences(input));
+console.log(getNumDistinctAdapterArrangements(input));
